@@ -1,18 +1,21 @@
-Documentação do Código
+Documentação do código.
 
-1.Introdução Este projeto foi desenvolvido para gerenciar uma lista de objetos de maneira dinâmica, utilizando uma Lista Ligada
-e implementando um algoritmo de ordenação, onde cada elemento da lista contém uma referência para o próximo. Além disso, 
-foi implementado o Bubble Sort, um algoritmo de ordenação simples, para ordenar a lista de objetos do tipo Livro por títuloe autor.
+1. Apresentação
 
-2.Estrutura de Dados: A Lista Ligada (ou Linked List) foi escolhida como
-estrutura de dados porque ela oferece grande flexibilidade ao lidar com 
-inserções e remoções de elementos.
+Este projeto foi elaborado para controlar uma coleção de itens de forma flexível, empregando uma estrutura de Listas Encadeadas e integrando um método de classificação, com cada item da lista contém um link para o próximo. Além disso, o algoritmo Bubble Sort foi adotado para ordenar a lista de livros por título e autor. Foi incluído um novo algoritmo de recomendação que emprega árvores binárias para recomendar livros relacionados a autores e assuntos.
 
-3.Vantagens da Lista Ligada: Inserções e remoções eficientes: Ao contrário de 
-arrays, a lista ligada não exige realocações de memória ao inserir ou remover elementos. 
-Flexibilidade: O tamanho da lista pode crescer e diminuir dinamicamente conforme a necessidade.
+2. Organização de informações em um formato particular.
 
-4.Classe AlgoritiroOrdenacao: A classe AlgoritiroOrdenacao implementa o algoritmo Bubble Sort para ordenar a lista ligada
-de livros. O método bubbleSortPorTitulo(ListaLigada lista) percorre a lista repetidamente, comparando elementos adjacente
-e trocando-os se estiverem na ordem incorreta. O Bubble Sort foi escolhido pela sua simplicidade de implementação e
-facilidade de entendimento.
+A escolha da Lista Ligada (ou Linked List) como estrutura de dados se deu pela sua capacidade de lidar com inserções e remoções de elementos de forma flexível. Foram elaboradas árvores binárias para controlar as recomendações, facilitando a busca por autor e assunto de forma eficiente.
+
+ 3. Benefícios da Lista Encadeada
+
+*Eficiência em inserções e remoções*: Diferentemente dos arrays, a lista encadeada não requer mudanças na alocação de memória ao adicionar ou remover elementos.
+
+- A lista pode aumentar e diminuir a forma dinâmica de acordo com a necessidade, graças à liberdade.
+
+4. Classe AlgoritmoOrdenacao
+A classe AlgoritmoOrdenacao utiliza o Bubble Sort para ordenar a lista encadeada de livros. A função bubbleSortPorTitulo(ListaLigada lista) itera sobre a lista várias vezes, comparando elementos executados e realizando trocas caso estejam fora de ordem. O motivo da escolha do Bubble Sort foi sua facilidade de implementação e entendimento.
+
+5. Recomendação de Algoritmo
+O algoritmo de recomendação utiliza árvores binárias para sugerir livros com base em dois critérios: autor e tema. Cada livro é representado por um nó na árvore, tornando a busca e a filtragem de recomendações ágeis e eficazes. Este framework permite que o sistema forneça sugestões personalizadas, melhorando a experiência do usuário.
