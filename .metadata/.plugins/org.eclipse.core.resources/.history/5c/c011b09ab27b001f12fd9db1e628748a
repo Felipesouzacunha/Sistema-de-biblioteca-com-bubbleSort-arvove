@@ -1,0 +1,53 @@
+package estrutura;
+import sistema.Livro;
+public class ArvoreBinariaBusca {
+	 private NoArvore raiz;
+
+	    public void adicionar(Livro livro) {
+	        raiz = adicionarRecursivo(raiz, livro);
+	    }
+
+	    private NoArvore adicionarRecursivo(NoArvore atual, Livro livro) {
+	        if (atual == null) {
+	            return new NoArvore(livro);
+	        }
+
+	        if (livro.getAutor().compareTo(atual.getLivro().getAutor()) < 0) {
+	            atual.setEsquerda(adicionarRecursivo(atual.getEsquerda(), livro));
+	        } else if (livro.getAutor().compareTo(atual.getLivro().getAutor()) > 0) {
+	            atual.setDireita(adicionarRecursivo(atual.getDireita(), livro));
+	        }
+
+	        return atual;
+	    }
+
+	    public void listarLivrosPorAutor() {
+	        listarInOrdem(raiz);
+	    }
+
+	    private void listarInOrdem(NoArvore no) {
+	        if (no != null) {
+	            listarInOrdem(no.getEsquerda());
+	            System.out.println(no.getLivro());
+	            listarInOrdem(no.getDireita());
+	        }
+	    }
+
+	    public Livro buscarPorAutor(String autor) {
+	        return buscarRecursivo(raiz, autor);
+	    }
+
+	    private Livro buscarRecursivo(NoArvore atual, String autor) {
+	        if (atual == null) {
+	            return null;
+	        }
+	        if (autor.equalsIgnoreCase(atual.getLivro().getAutor())) {
+	            return atual.getLivro();
+	        }
+	        if (autor.compareTo(atual.getLivro().getAutor()) < 0) {
+	            return buscarRecursivo(atual.getEsquerda(), autor);
+	        } else {
+	            return buscarRecursivo(atual.getDireita(), autor);
+	        }
+	    }
+}

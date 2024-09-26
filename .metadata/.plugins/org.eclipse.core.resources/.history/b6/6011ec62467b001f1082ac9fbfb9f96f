@@ -1,0 +1,48 @@
+package sistema;
+import listaLigada.*;
+
+public class Biblioteca {
+	private ListaLigada<Livro> estante = new ListaLigada<>();
+	AlgoritiroOrdenacao ordenador = new AlgoritiroOrdenacao();
+	
+	public void adicionarLivro(String titulo, String autor, int anoDePublicacao, String tema) {
+		
+		if(titulo != null && autor != null) {
+			Livro novoLivro = new Livro(titulo, autor, anoDePublicacao, tema);
+			estante.adicionar(novoLivro);
+		}else {
+			throw new IllegalArgumentException();
+		}
+		
+	}
+	
+	public void removerLivro(String titulo) {
+		No<Livro> atual = estante.getPrimeiro();
+		for(int i = 0; i < estante.getTamanho(); i++) {
+			if(atual.getValor().getTitulo().equalsIgnoreCase(titulo)) {
+				estante.remover(titulo);
+				System.out.println("reecx");
+				break;
+			}else {
+				atual = atual.getProximo();
+				System.out.println("oiu");
+			}
+		}
+	}
+	
+	public void listarLivros() {
+		for(int i = 0; i < estante.getTamanho(); i++) {
+			System.out.println(estante.getNo(i).getValor());
+		}
+	}
+	
+	public void ordenarPorTitulo() {
+		ordenador.bubbleSortPorTitulo(estante);
+	}
+	
+	public void ordenarPorAutor() {
+        ordenador.bubbleSortPorAutor(estante);
+    }
+	
+	
+}

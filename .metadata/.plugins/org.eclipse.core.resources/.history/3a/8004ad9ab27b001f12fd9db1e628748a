@@ -1,0 +1,33 @@
+package sistema;
+
+import java.util.Scanner;
+
+public class Main {
+	 public static void main(String[] args) {
+	        Biblioteca biblioteca = new Biblioteca();
+	        
+	        // Adicionando livros
+	        biblioteca.adicionarLivro("Dom Casmurro", "Machado de Assis", 1899, "Romance");
+	        biblioteca.adicionarLivro("Memórias Póstumas de Brás Cubas", "Machado de Assis", 1881, "Filosofia");
+	        biblioteca.adicionarLivro("A Moreninha", "Joaquim Manuel de Macedo", 1844, "Romance");
+	        biblioteca.adicionarLivro("O Primo Basílio", "Eça de Queirós", 1878, "Romance");
+
+	        // Listar todos os livros da estante
+	        System.out.println("Todos os livros da estante:");
+	        biblioteca.listarLivros();
+	        
+	        // Listar livros por autor (usando a árvore binária)
+	        System.out.println("\nLivros por autor:");
+	        biblioteca.listarLivrosPorAutor();
+
+	        // Recomendação por autor
+	        System.out.println("\nRecomendação por autor (Machado de Assis):");
+	        biblioteca.recomendarPorAutor("Machado de Assis");
+
+	        // Recomendação por tema
+	        System.out.println("\nRecomendação por tema (Romance):");
+	        biblioteca.recomendarPorTema("Romance");
+	    }
+	
+}
+

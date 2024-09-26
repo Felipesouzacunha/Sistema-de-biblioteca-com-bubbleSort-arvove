@@ -1,0 +1,23 @@
+package estrutura;
+import java.util.*;
+public class GrafoRelacionamento {
+	 private Map<String, List<String>> grafo = new HashMap<>();
+
+	    public void adicionarRelacionamento(String elemento1, String elemento2) {
+	        grafo.computeIfAbsent(elemento1, k -> new ArrayList<>()).add(elemento2);
+	        grafo.computeIfAbsent(elemento2, k -> new ArrayList<>()).add(elemento1);
+	    }
+
+	    public List<String> obterRelacionamentos(String elemento) {
+	        return grafo.getOrDefault(elemento, Collections.emptyList());
+	    }
+
+	    public List<String> recomendarPorRelacionamento(String elemento) {
+	        Set<String> recomendados = new HashSet<>(grafo.getOrDefault(elemento, Collections.emptyList()));
+	        for (String relacionado : grafo.getOrDefault(elemento, Collections.emptyList())) {
+	            recomendados.addAll(grafo.getOrDefault(relacionado, Collections.emptyList()));
+	        }
+	        recomendados.remove(elemento);
+	        return new ArrayList<>(recomendados);
+	    }
+}

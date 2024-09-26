@@ -1,0 +1,80 @@
+package sistema;
+
+import listaLigada.*;
+import estrutura.ArvoreBinariaBusca;
+import estrutura.GrafoRelacionamento;
+
+public class Biblioteca {
+	private ListaLigada<Livro> estante = new ListaLigada<>();
+	AlgoritiroOrdenacao ordenador = new AlgoritiroOrdenacao();
+	private ArvoreBinariaBusca arvorePorAutor = new ArvoreBinariaBusca();
+	private GrafoRelacionamento grafoTemas = new GrafoRelacionamento();
+
+	public void adicionarLivro(String titulo, String autor, int anoDePublicacao, String tema) {
+
+		if (titulo != null && autor != null) {
+			Livro novoLivro = new Livro(titulo, autor, anoDePublicacao, tema);
+			estante.adicionar(novoLivro);
+		} else {
+			throw new IllegalArgumentException();
+		}
+
+	}
+
+	public void removerLivro(String titulo) {
+		No<Livro> atual = estante.getPrimeiro();
+		No<Livro> anterior = null;
+		while (atual != null) {
+			if (atual.getValor().getTitulo().equalsIgnoreCase(titulo)) {
+				if (anterior == null) {
+					estante.setPrimeiro(atual.getProximo());
+				} else {
+					anterior.setProximo(atual.getProximo());
+				}
+				System.out.println("Livro removido: " + titulo);
+				return;
+			}
+			anterior = atual;
+			atual = atual.getProximo();
+		}
+		System.out.println("Livro não encontrado: " + titulo);
+	}
+
+	public void listarLivros() {
+		for (int i = 0; i < estante.getTamanho(); i++) {
+			System.out.println(estante.getNo(i).getValor());
+		}
+	}
+
+	public void ordenarPorTitulo() {
+		ordenador.bubbleSortPorTitulo(estante);
+	}
+
+	public void ordenarPorAutor() {
+		ordenador.bubbleSortPorAutor(estante);
+	}
+
+	public void listarLivrosPorAutor() {
+		arvorePorAutor.listarLivrosPorAutor();
+	}
+
+	public Livro buscarLivroPorAutor(String autor) {
+		return arvorePorAutor.buscarPorAutor(autor);
+	}
+
+	public void recomendarPorAutor(String autor) {
+		Livro livro = buscarLivroPorAutor(autor);
+		if (livro != null) {
+			System.out.println("Livro encontrado: " + livro);
+			System.out.println(
+					"Livros recomendados com autores relacionados: " + grafoTemas.recomendarPorRelacionamento(autor));
+		} else {
+			System.out.println("Nenhum livro encontrado para o autor: " + autor);
+		}
+	}
+
+	public void recomendarPorTema(String tema) {
+		System.out.println("Livros relacionados ao tema " + tema + ": " + grafoTemas.recomendarPorRelacionamento(tema));
+	}
+
+}
